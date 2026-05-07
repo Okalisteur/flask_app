@@ -17,9 +17,8 @@ spec:
         app: pythontest
     spec:
       containers:
-        containers:
-          - image: 192.168.49.1:4000/pythontest:latest
-            name: pythontest
-            ports:
-              - containerPort: 5000
-                name: microport
+        - image: 192.168.49.1:4000/pythontest:latest
+          name: pythontest
+          ports:
+            - containerPort: 5000
+              name: microport
