@@ -55,20 +55,20 @@ spec:
         }
 
         stage('Build Docker Image') {
-            steps {
-                container('docker') {
-                    sh 'docker build -t localhost:4000/pythontest:latest .'
-                }
-            }
+    steps {
+        container('docker') {
+            sh 'docker build -t 192.168.49.1:4000/pythontest:latest .'
         }
+    }
+}
 
-        stage('Push Docker Image') {
-            steps {
-                container('docker') {
-                    sh 'docker push localhost:4000/pythontest:latest'
-                }
-            }
+stage('Push Docker Image') {
+    steps {
+        container('docker') {
+            sh 'docker push 192.168.49.1:4000/pythontest:latest'
         }
+    }
+}
 
         stage('Deploy to Kubernetes') {
             steps {
