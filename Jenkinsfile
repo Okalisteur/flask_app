@@ -3,10 +3,7 @@ pipeline {
 
     environment {
         PYTHON_EXE = 'C:\\Users\\Tsanta\\AppData\\Local\\Programs\\Python\\Python311\\python.exe'
-    }
-
-    triggers {
-        pollSCM('* * * * *')
+        IMAGE_NAME = 'localhost:4000/pythontest:latest'
     }
 
     stages {
@@ -29,13 +26,13 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t 192.168.49.1:4000/pythontest:latest .'
+                bat 'docker build -t %IMAGE_NAME% .'
             }
         }
 
         stage('Push Docker Image') {
             steps {
-                bat 'docker push 192.168.49.1:4000/pythontest:latest'
+                bat 'docker push %IMAGE_NAME%'
             }
         }
 
