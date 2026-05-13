@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    environment {
+        PYTHON_EXE = 'C:\\Users\\Tsanta\\AppData\\Local\\Programs\\Python\\Python311\\python.exe'
+    }
+
     triggers {
         pollSCM('* * * * *')
     }
@@ -9,8 +13,8 @@ pipeline {
 
         stage('Check Environment') {
             steps {
-                bat 'py --version'
-                bat 'py -m pip --version'
+                bat '"%PYTHON_EXE%" --version'
+                bat '"%PYTHON_EXE%" -m pip --version'
                 bat 'docker --version'
                 bat 'kubectl version --client'
             }
@@ -18,8 +22,8 @@ pipeline {
 
         stage('Install Dependencies & Test Python') {
             steps {
-                bat 'py -m pip install --no-cache-dir -r requirements.txt'
-                bat 'py test.py --verbose'
+                bat '"%PYTHON_EXE%" -m pip install --no-cache-dir -r requirements.txt'
+                bat '"%PYTHON_EXE%" test.py --verbose'
             }
         }
 
