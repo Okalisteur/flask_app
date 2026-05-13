@@ -9,8 +9,8 @@ pipeline {
 
         stage('Check Environment') {
             steps {
-                bat 'python --version'
-                bat 'python -m pip --version'
+                bat 'py --version'
+                bat 'py -m pip --version'
                 bat 'docker --version'
                 bat 'kubectl version --client'
             }
@@ -18,8 +18,8 @@ pipeline {
 
         stage('Install Dependencies & Test Python') {
             steps {
-                bat 'python -m pip install --no-cache-dir -r requirements.txt'
-                bat 'python test.py --verbose'
+                bat 'py -m pip install --no-cache-dir -r requirements.txt'
+                bat 'py test.py --verbose'
             }
         }
 
